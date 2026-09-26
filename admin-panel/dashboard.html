@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Admin</h1>
+    <button id="sign-out">Sign out</button>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="projects">Projects</button>
+    <button class="tab-btn" data-tab="payments">Payments</button>
+    <button class="tab-btn" data-tab="conversations">Conversations</button>
+  </nav>
+
+  <main>
+    <section id="tab-projects" class="tab-panel active">
+      <h2>Projects</h2>
+      <form id="project-form" class="card">
+        <input type="hidden" id="project-id" />
+        <label>Title</label>
+        <input type="text" id="p-title" required />
+
+        <label>Slug</label>
+        <input type="text" id="p-slug" required placeholder="telegram-ai-assistant" />
+
+        <label>Status</label>
+        <select id="p-status">
+          <option value="draft">Draft</option>
+          <option value="published">Published</option>
+        </select>
+
+        <label>Summary</label>
+        <textarea id="p-summary" rows="2"></textarea>
+
+        <label>Problem</label>
+        <textarea id="p-problem" rows="2"></textarea>
+
+        <label>Solution</label>
+        <textarea id="p-solution" rows="2"></textarea>
+
+        <label>Outcome (leave blank if none — never invent this)</label>
+        <textarea id="p-outcome" rows="2"></textarea>
+
+        <label>Technologies (comma-separated)</label>
+        <input type="text" id="p-technologies" placeholder="Firebase, Node.js, Telegram Bot API" />
+
+        <label>Thumbnail URL (Cloudinary)</label>
+        <input type="text" id="p-thumbnail" />
+
+        <button type="submit">Save Project</button>
+        <button type="button" id="project-cancel-edit" hidden>Cancel edit</button>
+      </form>
+
+      <div id="projects-list" class="list"></div>
+    </section>
+
+    <section id="tab-payments" class="tab-panel">
+      <h2>Payment Requests</h2>
+      <form id="payment-form" class="card">
+        <label>Client name</label>
+        <input type="text" id="pay-client" required />
+
+        <label>Description</label>
+        <input type="text" id="pay-description" required />
+
+        <label>Amount (USD)</label>
+        <input type="number" id="pay-amount" step="0.01" min="0.01" required />
+
+        <button type="submit">Create Invoice</button>
+        <p id="payment-error" class="error" hidden></p>
+        <p id="payment-success" class="success" hidden></p>
+      </form>
+
+      <div id="payments-list" class="list"></div>
+    </section>
+
+    <section id="tab-conversations" class="tab-panel">
+      <h2>Bot Conversations</h2>
+      <p class="muted">Empty until the Telegram bot is live and logging conversations.</p>
+      <div id="conversations-list" class="list"></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
